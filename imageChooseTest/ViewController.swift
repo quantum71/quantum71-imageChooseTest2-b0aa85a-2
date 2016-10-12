@@ -35,15 +35,24 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         presentViewController(instanceActivity, animated: true, completion:nil)
         
         instanceActivity.completionWithItemsHandler = {
-        (activity,success,items,error) in self.save()
-        instanceActivity.dismissViewControllerAnimated(true, completion: nil)
-        let navigationController = self.navigationController
-        navigationController!.popToRootViewControllerAnimated(true)
+            (activityType: String?,completed: Bool,returnedItems: [AnyObject]?,activityError: NSError?) in
+        
+            if completed{
+                self.save()
+                instanceActivity.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
+                self.jumpBack()
+            }
             
         }
-     
-    
         
+        
+    }
+    
+    func jumpBack(){
+        let navigationController = self.navigationController
+        navigationController?.popToRootViewControllerAnimated(true)
+
     }
     
     let imageChooser = UIImagePickerController()
