@@ -14,7 +14,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-  //  Blocked this out to see if save function would work but it didnt
     var memedImage: UIImage!
     @IBOutlet weak var myToolbar: UIToolbar!
     @IBOutlet weak var topToolbar: UIImageView!
@@ -22,6 +21,8 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var bottomField: UITextField!
     @IBOutlet weak var myShareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
+    
     
     @IBAction func cancelAction(sender: AnyObject) {
     //test
@@ -31,29 +32,27 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func mySharingButton(sender: AnyObject) {
         let sharedImage = generateMemedImage()
-        let instanceActivity = UIActivityViewController(activityItems: [sharedImage], applicationActivities: nil)
-        presentViewController(instanceActivity, animated: true, completion:nil)
-        
-        instanceActivity.completionWithItemsHandler = {
-            (activityType: String?,completed: Bool,returnedItems: [AnyObject]?,activityError: NSError?) in
-        
-            if completed{
-                self.save()
-                instanceActivity.dismissViewControllerAnimated(true, completion: nil)
-                self.dismissViewControllerAnimated(true, completion: nil)
-                self.jumpBack()
+                let instanceActivity = UIActivityViewController(activityItems: [sharedImage], applicationActivities: nil)
+                    presentViewController(instanceActivity, animated: true, completion:nil)
+            
+                    instanceActivity.completionWithItemsHandler = {
+                        (activity,success,items,error) in self.save()
+                        instanceActivity.dismissViewControllerAnimated(true, completion: nil)
+             //           let navigationController = self.navigationController
+             //            navigationController!.popToRootViewControllerAnimated(true)
+                
             }
             
         }
         
         
-    }
     
-    func jumpBack(){
-        let navigationController = self.navigationController
-        navigationController?.popToRootViewControllerAnimated(true)
-
-    }
+    
+  //  func jumpBack(){
+  //      let navigationController = self.navigationController
+  //      navigationController?.popToRootViewControllerAnimated(true)
+  //
+  //  }
     
     let imageChooser = UIImagePickerController()
     
@@ -203,6 +202,33 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
         
-        
     }
+    
+//    let appearance = UITabBarItem.appearance()
+//    let attributes = [NSFontAttributeName:UIFont(name: "American Typewriter", size: 20)]
+//    
+//   appearance.setTitleTextAttributes(attributes, forState: .Normal)
+//
+//    
+//    let colorNormal : UIColor = UIColor.blackColor()
+//    let colorSelected : UIColor = UIColor.whiteColor()
+//    let titleFontAll : UIFont = UIFont(name: "American Typewriter", size: 13.0)!
+//    
+//    let attributesNormal = [
+//        NSForegroundColorAttributeName : colorNormal,
+//        NSFontAttributeName : titleFontAll
+//    ]
+//    
+//    let attributesSelected = [
+//        NSForegroundColorAttributeName : colorSelected,
+//        NSFontAttributeName : titleFontAll
+//    ]
+//    
+//    UITabBarItem.appearance().setTitleTextAttributes(attributesNormal, forState: .Normal)
+//    UITabBarItem.appearance().setTitleTextAttributes(attributesSelected, forState: .Selected)
+//    
+//    
+
+    
+    
 }
