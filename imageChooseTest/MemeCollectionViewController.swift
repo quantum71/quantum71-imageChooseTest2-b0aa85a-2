@@ -20,7 +20,7 @@ class MemeCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Sent Memes"
+        self.title = "Collection View"
         
     }
     

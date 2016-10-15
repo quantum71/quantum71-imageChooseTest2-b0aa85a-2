@@ -14,5 +14,5 @@ struct Meme {
     var text2: String?
     var image: UIImage?
     var memedImage: UIImage
-    //This is a test for my git repository
+    
 }

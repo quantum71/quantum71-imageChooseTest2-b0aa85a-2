@@ -22,8 +22,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var myShareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
-    
-    
     @IBAction func cancelAction(sender: AnyObject) {
     //test
         print("test")
